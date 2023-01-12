@@ -16,8 +16,6 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -34,9 +32,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://codyalanstubbs.com/the-odin-project/21-shopping-cart/)
@@ -45,16 +42,15 @@ This app uses React and Firebase to create a timed <em>Where's Waldo</em> game.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
 [![React][React.js]][React-url]
 [![Firebase][Firebase]][Firebase-url]
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [] Choose photo(s)
@@ -65,8 +61,6 @@ This app uses React and Firebase to create a timed <em>Where's Waldo</em> game.
 - [] Add timer component to begin timing on image load
 - [] Add target box component for when user clicks image
 - [] Add user input for high score
-
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -88,12 +82,12 @@ This app uses React and Firebase to create a timed <em>Where's Waldo</em> game.
    ```sh
    npm run build
    ```
-5. Copy the contents of build directory into your relative path directory 
+5. Copy the contents of build directory into your relative path directory
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- CONTACT -->
+
 ## Contact
 
 Your Name - [@codyalanstubbs](https://twitter.com/@codyalanstubbs)
@@ -104,6 +98,7 @@ Project Link: [https://github.com/codyalanstubbs/top-wheres-waldo](https://githu
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/codyalanstubbs/top-wheres-waldo.svg?style=for-the-badge
 [contributors-url]: https://github.com/codyalanstubbs/top-wheres-waldo/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/codyalanstubbs/top-wheres-waldo.svg?style=for-the-badge
@@ -134,4 +129,4 @@ Project Link: [https://github.com/codyalanstubbs/top-wheres-waldo](https://githu
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[JQuery-url]: https://jquery.com
