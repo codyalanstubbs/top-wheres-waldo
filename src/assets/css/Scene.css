@@ -1,0 +1,8 @@
+.scene-btn {
+    border: none;
+    padding: 0;
+}
+
+.scene-btn > img {
+    display: block;
+} 
