@@ -1,8 +1,9 @@
 import React from "react";
-import "./App.css";
+import Character from "./components/Character";
 import Scene from "./components/Scene";
-import Wilma from "./assets/images/wilma_400x400.png";
+import "./App.css";
 import Waldo from "./assets/images/waldo_400x400.png";
+import Wilma from "./assets/images/wilma_400x400.png";
 import Wizard from "./assets/images/wizard_400x400.png";
 
 function App() {
@@ -10,24 +11,9 @@ function App() {
     <div className="App">
       <h1 className="instructions">Find These Folks:</h1>
       <div className="characters-bin">
-        <img
-          className="waldo"
-          width="40px"
-          src={Waldo}
-          alt="Look for this guy!"
-        />
-        <img
-          className="wilma"
-          width="40px"
-          src={Wilma}
-          alt="Look for this lady!"
-        />
-        <img
-          className="wizard"
-          width="40px"
-          src={Wizard}
-          alt="Look for this wise man!"
-        />
+        <Character name="Waldo" img={Waldo} />
+        <Character name="Wilma" img={Wilma} />
+        <Character name="Wizard" img={Wizard} />
       </div>
       <h2 className="timer">0:00:00</h2>
       <Scene />
