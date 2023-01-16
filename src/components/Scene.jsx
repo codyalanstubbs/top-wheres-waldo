@@ -13,9 +13,17 @@ function Scene() {
 
   const handleClick = (e) => {
     setTargetClicked(true);
-    // const img = document.querySelector("img");
-    setTargetXPos(e.pageX - 20);
-    setTargetYPos(e.pageY - 20);
+    setTargetXPos(e.pageX - 25);
+    setTargetYPos(e.pageY - 25);
+
+    // To be used for validating if user clicked correct location
+    const scene = document.querySelector(".scene");
+    const clickXCoordInScene = e.pageX - scene.offsetLeft;
+    const clickYCoordInScene = e.pageY - scene.offsetTop;
+    console.log("L: ", clickXCoordInScene - 25);
+    console.log("R: ", clickXCoordInScene + 25);
+    console.log("T: ", clickYCoordInScene - 25);
+    console.log("B: ", clickYCoordInScene + 25);
   };
 
   if (targetClicked) {
@@ -25,7 +33,7 @@ function Scene() {
           width="600px"
           src={SceneImg}
           alt="A Where's Waldo scene."
-          className="App"
+          className="scene"
         />
         <div
           style={{ left: targetXPos, top: targetYPos }}
