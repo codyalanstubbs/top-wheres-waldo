@@ -14,7 +14,6 @@ function App() {
   ]);
 
   function handleClick() {
-    console.log(charactersFound[0].found);
     setCharactersFound([
       { name: "waldo", found: true, src: Waldo },
       { name: "wilma", found: false, src: Wilma },
@@ -25,9 +24,6 @@ function App() {
   return (
     <div className="App">
       <h1 className="instructions">Find These Folks:</h1>
-      <button type="button" onClick={handleClick}>
-        Found Him
-      </button>
       <div className="characters-bin">
         {charactersFound.map((character) => {
           if (character.found) {
