@@ -7,6 +7,8 @@ import Wilma from "./assets/images/wilma_400x400.png";
 import Wizard from "./assets/images/wizard_400x400.png";
 
 function App() {
+  const [startScreen, setStartScreen] = useState(true);
+
   const [charactersFound, setCharactersFound] = useState([
     { name: "waldo", found: false, src: Waldo },
     { name: "wilma", found: false, src: Wilma },
@@ -24,6 +26,21 @@ function App() {
     },
     [setCharactersFound]
   );
+
+  function handleStartClick() {
+    setStartScreen(false);
+  }
+
+  if (startScreen) {
+    return (
+      <div className="App">
+        <h1 className="instructions">Where&apos;s Waldo?</h1>
+        <button type="button" onClick={handleStartClick}>
+          START
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
