@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Character from "./components/Character";
+import Timer from "./components/Timer";
 import Scene from "./components/Scene";
 import "./App.css";
 import Waldo from "./assets/images/waldo_400x400.png";
@@ -27,8 +28,39 @@ function App() {
     [setCharactersFound]
   );
 
+  // Set states for the timer
+  const [seconds, setSeconds] = useState("00");
+  const [minutes, setMinutes] = useState("00");
+  const [hours, setHours] = useState("00");
+
+  // Calculate and set times - to be used in handleStartClick
+  const getTime = (startTime) => {
+    const time = Date.now() - startTime;
+
+    let newHours = (Math.floor(time / (1000 * 60 * 60)) % 24).toString();
+    let newMinutes = Math.floor((time / 1000 / 60) % 60).toString();
+    let newSeconds = Math.floor((time / 1000) % 60).toString();
+
+    if (newHours.length === 1) newHours = `0${newHours}`;
+    if (newMinutes.length === 1) newMinutes = `0${newMinutes}`;
+    if (newSeconds.length === 1) newSeconds = `0${newSeconds}`;
+
+    setHours(newHours);
+    setMinutes(newMinutes);
+    setSeconds(newSeconds);
+  };
+
+  // Once user clicks start button, then...
   function handleStartClick() {
+    // ...change startScreen state to display Scene
     setStartScreen(false);
+
+    // Set the startTime for timer
+    const startTime = Date.now();
+
+    // Set interval for incrementing the timer
+    const interval = setInterval(() => getTime(startTime), 1000);
+    return () => clearInterval(interval);
   }
 
   if (startScreen) {
@@ -57,7 +89,7 @@ function App() {
           return <Character name={character.name} img={character.src} />;
         })}
       </div>
-      <h2 className="timer">0:00:00</h2>
+      <Timer hours={hours} minutes={minutes} seconds={seconds} />
       <Scene changeCharacterFound={changeCharacterFound} />
     </div>
   );

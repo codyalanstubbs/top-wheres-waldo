@@ -1,0 +1,18 @@
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+.timer > div {
+    text-align: center;
+}
+
+.hours, .minutes, .seconds {
+    width: 35px;
+}
+
+.colon {
+    width: 10px;
+}
