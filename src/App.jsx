@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Character from "./components/Character";
 import Scene from "./components/Scene";
 import "./App.css";
@@ -13,13 +13,17 @@ function App() {
     { name: "wizard", found: false, src: Wizard },
   ]);
 
-  function handleClick() {
-    setCharactersFound([
-      { name: "waldo", found: true, src: Waldo },
-      { name: "wilma", found: false, src: Wilma },
-      { name: "wizard", found: false, src: Wizard },
-    ]);
-  }
+  const changeCharacterFound = useCallback(
+    (characterName) => {
+      const newCharactersFound = [...charactersFound];
+      const character = newCharactersFound.find((char) => {
+        return char.name === characterName;
+      });
+      character.found = true;
+      setCharactersFound(newCharactersFound);
+    },
+    [setCharactersFound]
+  );
 
   return (
     <div className="App">
@@ -37,7 +41,7 @@ function App() {
         })}
       </div>
       <h2 className="timer">0:00:00</h2>
-      <Scene setCharactersFound />
+      <Scene changeCharacterFound={changeCharacterFound} />
     </div>
   );
 }
