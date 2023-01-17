@@ -73,11 +73,9 @@ function Scene(props) {
         charCoords.bottom >= clickYCoordInScene &&
         charCoords.top <= clickYCoordInScene
       ) {
-        console.log("Correct!");
         changeCharacterFound(characterName);
         setClicked(false);
       } else {
-        console.log("Incorrect!");
         setClicked(false);
       }
     };
