@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  // collection,
-  // query,
-  // where,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import Character from "./Character";
 import "../assets/css/Scene.css";
 import SceneImg from "../assets/images/scene-winter.jpeg";
