@@ -16,6 +16,15 @@ function App() {
     { name: "wizard", found: false, src: Wizard },
   ]);
 
+  // Set states for the timer
+  const [seconds, setSeconds] = useState("00");
+  const [minutes, setMinutes] = useState("00");
+  const [hours, setHours] = useState("00");
+
+  function getTimeToComplete() {
+    return { hours, minutes, seconds };
+  }
+
   const changeCharacterFound = useCallback(
     (characterName) => {
       const newCharactersFound = [...charactersFound];
@@ -23,15 +32,22 @@ function App() {
         return char.name === characterName;
       });
       character.found = true;
+
+      const characterStillNotFound = newCharactersFound.some((char) => {
+        return char.found === false;
+      });
+
+      if (!characterStillNotFound) {
+        const completionTime = getTimeToComplete();
+        alert(
+          `You finished in ${completionTime.hours} hours, ${completionTime.minutes} minutes, and ${completionTime.seconds} seconds!`
+        );
+      }
+
       setCharactersFound(newCharactersFound);
     },
-    [setCharactersFound]
+    [setCharactersFound, getTimeToComplete]
   );
-
-  // Set states for the timer
-  const [seconds, setSeconds] = useState("00");
-  const [minutes, setMinutes] = useState("00");
-  const [hours, setHours] = useState("00");
 
   // Calculate and set times - to be used in handleStartClick
   const getTime = (startTime) => {
