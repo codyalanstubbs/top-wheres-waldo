@@ -9,6 +9,7 @@ import Wizard from "./assets/images/wizard_400x400.png";
 
 function App() {
   const [startScreen, setStartScreen] = useState(true);
+  const [endScreen, setEndScreen] = useState(false);
 
   const [charactersFound, setCharactersFound] = useState([
     { name: "waldo", found: false, src: Waldo },
@@ -21,9 +22,10 @@ function App() {
   const [minutes, setMinutes] = useState("00");
   const [hours, setHours] = useState("00");
 
-  function getTimeToComplete() {
-    return { hours, minutes, seconds };
-  }
+  // Set states for completion time for end screen
+  const [finalSecond, setFinalSecond] = useState(null);
+  const [finalMinute, setFinalMinute] = useState(null);
+  const [finalHour, setFinalHour] = useState(null);
 
   const changeCharacterFound = useCallback(
     (characterName) => {
@@ -38,15 +40,15 @@ function App() {
       });
 
       if (!characterStillNotFound) {
-        const completionTime = getTimeToComplete();
-        alert(
-          `You finished in ${completionTime.hours} hours, ${completionTime.minutes} minutes, and ${completionTime.seconds} seconds!`
-        );
+        setFinalHour(hours);
+        setFinalMinute(minutes);
+        setFinalSecond(seconds);
+        setEndScreen(true);
       }
 
       setCharactersFound(newCharactersFound);
     },
-    [setCharactersFound, getTimeToComplete]
+    [setCharactersFound, setEndScreen, hours, minutes, seconds]
   );
 
   // Calculate and set times - to be used in handleStartClick
@@ -86,6 +88,22 @@ function App() {
         <button type="button" onClick={handleStartClick}>
           START
         </button>
+      </div>
+    );
+  }
+
+  if (endScreen) {
+    return (
+      <div className="App">
+        <h1 className="instructions">You found&apos;em!</h1>
+        <h2>
+          You finished in {finalHour} hours, {finalMinute} minutes, and{" "}
+          {finalSecond} seconds!
+        </h2>
+        <label htmlFor="username">
+          Enter Your Name: <input type="text" name="username" id="username" />
+        </label>
+        <button type="button">Submit Score</button>
       </div>
     );
   }
