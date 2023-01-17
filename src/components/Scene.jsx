@@ -44,7 +44,10 @@ function getCharCoordData(characterName) {
   return charCoords;
 }
 
-function Scene() {
+function Scene(props) {
+  // eslint-disable-next-line react/prop-types
+  const { changeCharacterFound } = props;
+
   const [clicked, setClicked] = useState(false);
   const [clickXPos, setClickXPos] = useState(0);
   const [clickYPos, setClickYPos] = useState(0);
@@ -59,7 +62,7 @@ function Scene() {
   // Function for validating the user's character selection
   // has the correct coordinates
   function characterSelected(e) {
-    // Find the coordinats of the click position in the scene
+    // Find the coordinates of the click position in the scene
     const scene = document.querySelector(".scene");
     const clickXCoordInScene = clickXPos - scene.offsetLeft;
     const clickYCoordInScene = clickYPos - scene.offsetTop;
@@ -78,6 +81,7 @@ function Scene() {
         charCoords.top <= clickYCoordInScene
       ) {
         console.log("Correct!");
+        changeCharacterFound(characterName);
         setClicked(false);
       } else {
         console.log("Incorrect!");
@@ -103,7 +107,7 @@ function Scene() {
           />
         </button>
         <div
-          style={{ left: clickXPos - 25, top: clickYPos - 35 }}
+          style={{ left: clickXPos - 25, top: clickYPos - 25 }}
           className="target-container"
         >
           <div className="targeting-box" />
