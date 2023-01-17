@@ -1,4 +1,8 @@
 import React, { useCallback, useState } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import uniqid from "uniqid";
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import Character from "./components/Character";
 import Timer from "./components/Timer";
 import Scene from "./components/Scene";
@@ -81,6 +85,39 @@ function App() {
     return () => clearInterval(interval);
   }
 
+  // Handle submit score click
+  async function handleSubmitScore() {
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+      authDomain: "top-wheres-waldo-b4094.firebaseapp.com",
+      projectId: "top-wheres-waldo-b4094",
+      storageBucket: "top-wheres-waldo-b4094.appspot.com",
+      messagingSenderId: "811092831655",
+      appId: "1:811092831655:web:be49ee2a65374322fcda82",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+    // Generate a unique id for the user
+    const userID = uniqid();
+
+    // Get the user input for their name
+    const userName = document.querySelector("#username").value;
+
+    // Add a new user doc with user's data
+    await setDoc(doc(db, "users", userID), {
+      name: userName,
+      hours,
+      minutes,
+      seconds,
+    });
+  }
+
   if (startScreen) {
     return (
       <div className="App">
@@ -103,7 +140,9 @@ function App() {
         <label htmlFor="username">
           Enter Your Name: <input type="text" name="username" id="username" />
         </label>
-        <button type="button">Submit Score</button>
+        <button type="button" onClick={handleSubmitScore}>
+          Submit Score
+        </button>
       </div>
     );
   }
