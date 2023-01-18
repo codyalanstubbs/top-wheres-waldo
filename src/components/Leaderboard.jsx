@@ -27,7 +27,8 @@ const db = getFirestore(app);
 
 const usersRef = collection(db, "users");
 
-function Leaderboard() {
+// eslint-disable-next-line react/prop-types
+function Leaderboard({ goToStartScreen }) {
   const [leaderboardData, setLeaderboardData] = useState([]);
 
   useEffect(() => {
@@ -82,7 +83,9 @@ function Leaderboard() {
           })}
         </tbody>
       </table>
-      <button type="button">Play Again?</button>
+      <button type="button" onClick={goToStartScreen}>
+        Play Again?
+      </button>
     </div>
   );
 }

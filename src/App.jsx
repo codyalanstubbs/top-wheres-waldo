@@ -90,6 +90,12 @@ function App() {
     setLeaderboardDisplay(true);
   });
 
+  const goToStartScreen = useCallback(() => {
+    // Transition from submit data screen to leaderboard scene
+    setLeaderboardDisplay(false);
+    setStartScreen(true);
+  });
+
   if (startScreen) {
     return (
       <div className="App">
@@ -113,7 +119,7 @@ function App() {
   }
 
   if (leaderboardDisplay) {
-    return <Leaderboard />;
+    return <Leaderboard goToStartScreen={goToStartScreen} />;
   }
 
   return (
