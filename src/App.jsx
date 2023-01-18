@@ -91,7 +91,7 @@ function App() {
   });
 
   const goToStartScreen = useCallback(() => {
-    // Transition from submit data screen to leaderboard scene
+    // Transition from leaderboard screen to start screen
     setLeaderboardDisplay(false);
     setStartScreen(true);
   });
