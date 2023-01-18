@@ -5,7 +5,7 @@ import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 function SubmitScoreSreen(props) {
   // eslint-disable-next-line react/prop-types
-  const { finalHour, finalMinute, finalSecond, goToLeaderBoard } = props;
+  const { finalHour, finalMinute, finalSecond, goToLeaderboard } = props;
 
   async function handleSubmitScore() {
     // Your web app's Firebase configuration
@@ -38,7 +38,7 @@ function SubmitScoreSreen(props) {
       seconds: finalSecond,
     });
 
-    goToLeaderBoard();
+    goToLeaderboard();
   }
 
   return (

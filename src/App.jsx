@@ -84,7 +84,7 @@ function App() {
     return () => clearInterval(interval);
   }
 
-  const goToLeaderBoard = useCallback(() => {
+  const goToLeaderboard = useCallback(() => {
     // Transition from submit data screen to leaderboard scene
     setEndScreen(false);
     setLeaderboardDisplay(true);
@@ -107,7 +107,7 @@ function App() {
         finalHour={finalHour}
         finalMinute={finalMinute}
         finalSecond={finalSecond}
-        goToLeaderBoard={goToLeaderBoard}
+        goToLeaderboard={goToLeaderboard}
       />
     );
   }
