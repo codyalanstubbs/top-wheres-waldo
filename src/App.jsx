@@ -24,11 +24,7 @@ function App() {
   const [seconds, setSeconds] = useState("00");
   const [minutes, setMinutes] = useState("00");
   const [hours, setHours] = useState("00");
-
-  // Set states for completion time for end screen
-  const [finalSecond, setFinalSecond] = useState(null);
-  const [finalMinute, setFinalMinute] = useState(null);
-  const [finalHour, setFinalHour] = useState(null);
+  let interval;
 
   const changeCharacterFound = useCallback(
     (characterName) => {
@@ -42,20 +38,20 @@ function App() {
         return char.found === false;
       });
 
+      // If there are no more characters to find...
       if (!characterStillNotFound) {
-        setFinalHour(hours);
-        setFinalMinute(minutes);
-        setFinalSecond(seconds);
+        // ...stop timer and go to SubmitScoreScreen
+        clearInterval(interval);
         setEndScreen(true);
       }
 
       setCharactersFound(newCharactersFound);
     },
-    [setCharactersFound, setEndScreen, hours, minutes, seconds]
+    [interval, setCharactersFound]
   );
 
   // Calculate and set times - to be used in handleStartClick
-  const getTime = (startTime) => {
+  function getTime(startTime) {
     const time = Date.now() - startTime;
 
     let newHours = (Math.floor(time / (1000 * 60 * 60)) % 24).toString();
@@ -69,25 +65,33 @@ function App() {
     setHours(newHours);
     setMinutes(newMinutes);
     setSeconds(newSeconds);
-  };
+  }
 
-  // Once user clicks start button, then...
-  function handleStartClick() {
-    // ...change startScreen state to display Scene
+  function goToGameScreen() {
+    // Transition from start screen to game scree
     setStartScreen(false);
 
     // Set the startTime for timer
     const startTime = Date.now();
 
     // Set interval for incrementing the timer
-    const interval = setInterval(() => getTime(startTime), 1000);
-    return () => clearInterval(interval);
+    interval = setInterval(() => getTime(startTime), 1000);
   }
 
   const goToLeaderboard = useCallback(() => {
-    // Transition from submit data screen to leaderboard scene
+    // Transition from submit data screen to leaderboard screen
     setEndScreen(false);
     setLeaderboardDisplay(true);
+
+    // Reset character and time states
+    setCharactersFound([
+      { name: "waldo", found: false, src: Waldo },
+      { name: "wilma", found: false, src: Wilma },
+      { name: "wizard", found: false, src: Wizard },
+    ]);
+    setSeconds("00");
+    setMinutes("00");
+    setHours("00");
   });
 
   const goToStartScreen = useCallback(() => {
@@ -100,7 +104,7 @@ function App() {
     return (
       <div className="App">
         <h1 className="instructions">Where&apos;s Waldo?</h1>
-        <button type="button" onClick={handleStartClick}>
+        <button type="button" onClick={goToGameScreen}>
           START
         </button>
       </div>
@@ -110,9 +114,9 @@ function App() {
   if (endScreen) {
     return (
       <SubmitScoreScreen
-        finalHour={finalHour}
-        finalMinute={finalMinute}
-        finalSecond={finalSecond}
+        finalHour={hours}
+        finalMinute={minutes}
+        finalSecond={seconds}
         goToLeaderboard={goToLeaderboard}
       />
     );
