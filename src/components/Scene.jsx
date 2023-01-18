@@ -12,11 +12,11 @@ function getCharCoordData(characterName) {
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: "top-wheres-waldo-b4094.firebaseapp.com",
-    projectId: "top-wheres-waldo-b4094",
-    storageBucket: "top-wheres-waldo-b4094.appspot.com",
-    messagingSenderId: "811092831655",
-    appId: "1:811092831655:web:be49ee2a65374322fcda82",
+    authDomain: "top-where-s-waldo.firebaseapp.com",
+    projectId: "top-where-s-waldo",
+    storageBucket: "top-where-s-waldo.appspot.com",
+    messagingSenderId: "20898117017",
+    appId: "1:20898117017:web:925946e13a2dea6d350f08",
   };
 
   // Initialize Firebase
