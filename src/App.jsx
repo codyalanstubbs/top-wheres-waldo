@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import Character from "./components/Character";
 import SubmitScoreScreen from "./components/SubmitScoreScreen";
 import Leaderboard from "./components/Leaderboard";
-import Timer from "./components/Timer";
-import Scene from "./components/Scene";
+import GameScreen from "./components/GameScreen";
+
 import "./App.css";
 import Waldo from "./assets/images/waldo_400x400.png";
 import Wilma from "./assets/images/wilma_400x400.png";
@@ -118,23 +117,13 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1 className="instructions">Find These Folks:</h1>
-      <div className="characters-bin">
-        {charactersFound.map((character) => {
-          if (character.found) {
-            return (
-              <div className="found-character">
-                <Character name={character.name} img={character.src} />
-              </div>
-            );
-          }
-          return <Character name={character.name} img={character.src} />;
-        })}
-      </div>
-      <Timer hours={hours} minutes={minutes} seconds={seconds} />
-      <Scene changeCharacterFound={changeCharacterFound} />
-    </div>
+    <GameScreen
+      hours={hours}
+      minutes={minutes}
+      seconds={seconds}
+      charactersFound={charactersFound}
+      changeCharacterFound={changeCharacterFound}
+    />
   );
 }
 
