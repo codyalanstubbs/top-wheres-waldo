@@ -9,19 +9,23 @@ function GameScreen(props) {
     props;
   return (
     <div className="App">
-      <h1 className="instructions">Find These Folks:</h1>
+      <h1 className="instructions  glow">Find These Folks:</h1>
       <div className="characters-bin">
         {
           // eslint-disable-next-line react/prop-types
           charactersFound.map((character) => {
             if (character.found) {
               return (
-                <div className="found-character">
+                <div className="found-character glow">
                   <Character name={character.name} img={character.src} />
                 </div>
               );
             }
-            return <Character name={character.name} img={character.src} />;
+            return (
+              <div className="find-character glow">
+                <Character name={character.name} img={character.src} />
+              </div>
+            );
           })
         }
       </div>

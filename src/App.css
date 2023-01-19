@@ -7,10 +7,28 @@
 
 .characters-bin {
   display: flex;
-  gap: 5px;
+  gap: 20px;
 }
 
 .found-character {
   border-radius:  5px;
   background-color: green;
+  box-shadow:  0 0 10px rgb(247, 177, 3), 0 0 20px rgb(247, 177, 3),
+  0 0 30px rgb(247, 177, 3), 0 0 40px goldenrod;
+  animation: box-glow 3s ease-in-out infinite alternate;
+}
+
+.find-character {
+  border-radius:  5px;
+  background-color: grey;
+}
+
+@keyframes box-glow {
+  from {
+    box-shadow: 0 0 10px #fff;
+  }
+
+  to {
+    box-shadow: 0 0 10px goldenrod;
+  }
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { query, orderBy, collection, limit, getDocs } from "firebase/firestore";
 import ConnectToDatabase from "../assets/js/connectToDatabase";
+import GlowingWaldo from "./GlowingWaldo";
+import "../assets/css/Leaderboard.css";
 
 // Connect to dabase and get reference to users
 const db = ConnectToDatabase();
@@ -36,8 +38,11 @@ function Leaderboard({ goToStartScreen }) {
   }, []);
 
   return (
-    <div className="App">
-      <h1 className="instructions">You&apos;re score has been submitted!</h1>
+    <div className="LeaderboardScreen App">
+      <GlowingWaldo classList="svgGlow" w="100" h="100" />
+      <h1 className="instructions glow">
+        You&apos;re score has been submitted!
+      </h1>
       <table>
         <thead>
           <tr>
@@ -58,7 +63,7 @@ function Leaderboard({ goToStartScreen }) {
           })}
         </tbody>
       </table>
-      <button type="button" onClick={goToStartScreen}>
+      <button type="button" className="again" onClick={goToStartScreen}>
         Play Again?
       </button>
     </div>

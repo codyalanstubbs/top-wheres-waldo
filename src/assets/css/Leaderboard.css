@@ -1,0 +1,84 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+body {
+  font-family: Press Start\2P, sans-serif;
+  text-align: center;
+  background: rgb(31, 31, 31);
+  color: goldenrod;
+}
+
+body:after {
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 100;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(50%, transparent),
+    color-stop(50%, rgba(0, 0, 0, 0.25))
+  );
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.25) 0);
+  background-size: 100% 4px;
+  opacity: 0.5;
+  color: goldenrod;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+td {
+  color: #fafafa !important;
+}
+
+.glow {
+  text-shadow: 0 0 10px rgb(247, 177, 3), 0 0 20px rgb(247, 177, 3),
+    0 0 30px rgb(247, 177, 3), 0 0 40px goldenrod, 0 0 70px goldenrod,
+    0 0 80px goldenrod, 0 0 100px goldenrod, 0 0 150px goldenrod;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  100% {
+    text-shadow: 0 0 5px rgb(247, 177, 3), 0 0 10px rgb(247, 177, 3),
+      0 0 15px rgb(247, 177, 3), 0 0 20px goldenrod, 0 0 35px goldenrod,
+      0 0 40px goldenrod, 0 0 50px goldenrod, 0 0 75px goldenrod;
+  }
+}
+
+.svgGlow {
+  text-shadow: 0 0 10px rgb(247, 177, 3), 0 0 20px rgb(247, 177, 3),
+    0 0 30px rgb(247, 177, 3), 0 0 40px goldenrod, 0 0 70px goldenrod,
+    0 0 80px goldenrod, 0 0 100px goldenrod, 0 0 150px goldenrod;
+  animation: svg-shadow 3s ease-in-out infinite alternate;
+}
+
+@keyframes svg-shadow {
+  from {
+    filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px rgb(247, 177, 3))
+      drop-shadow(0 0 30px rgb(247, 177, 3));
+  }
+
+  to {
+    filter: drop-shadow(0 0 40px #fff) drop-shadow(0 0 70px goldenrod)
+      drop-shadow(0 0 80px goldenrod);
+  }
+}
+
+table {
+  text-align: center;
+  color: white !important;
+}
+
+th {
+  color: goldenrod;
+}

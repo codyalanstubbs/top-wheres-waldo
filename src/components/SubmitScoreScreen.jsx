@@ -32,7 +32,7 @@ function SubmitScoreSreen(props) {
 
   return (
     <div className="App">
-      <h1 className="instructions">You found&apos;em!</h1>
+      <h1 className="instructions glow">You found&apos;em!</h1>
       <h2>
         You finished in {finalHour} hours, {finalMinute} minutes, and{" "}
         {finalSecond} seconds!

@@ -1,10 +1,12 @@
 .scene-btn {
     border: none;
     padding: 0;
+    border-radius: 10px;
 }
 
 .scene-btn > img {
     display: block;
+    border-radius: 10px;
 } 
 
 .target-container {
