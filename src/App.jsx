@@ -1,9 +1,8 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
+import StartScreen from "./components/StartScreen";
 import SubmitScoreScreen from "./components/SubmitScoreScreen";
 import LeaderboardScreen from "./components/LeaderboardScreen";
 import GameScreen from "./components/GameScreen";
-
 import "./App.css";
 import Waldo from "./assets/images/waldo_400x400.png";
 import Wilma from "./assets/images/wilma_400x400.png";
@@ -110,11 +109,11 @@ function App() {
     }
   }, [leaderboardScreen]);
 
-  function goToGameScreen() {
+  const goToGameScreen = useCallback(() => {
     // Transition from start screen to game screen
     setStartScreen(false);
     setGameScreen(true);
-  }
+  });
 
   const goToLeaderboard = useCallback(() => {
     // Transition from submit data screen to leaderboard screen
@@ -129,14 +128,7 @@ function App() {
   });
 
   if (startScreen) {
-    return (
-      <div className="App">
-        <h1 className="instructions">Where&apos;s Waldo?</h1>
-        <button type="button" onClick={goToGameScreen}>
-          START
-        </button>
-      </div>
-    );
+    return <StartScreen goToGameScreen={goToGameScreen} />;
   }
 
   if (submitScoreScreen) {
