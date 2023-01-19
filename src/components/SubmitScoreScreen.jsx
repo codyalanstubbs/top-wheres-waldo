@@ -8,37 +8,38 @@ function SubmitScoreSreen(props) {
   const { finalHour, finalMinute, finalSecond, goToLeaderboard } = props;
 
   async function handleSubmitScore() {
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-      authDomain: "top-where-s-waldo.firebaseapp.com",
-      projectId: "top-where-s-waldo",
-      storageBucket: "top-where-s-waldo.appspot.com",
-      messagingSenderId: "20898117017",
-      appId: "1:20898117017:web:925946e13a2dea6d350f08",
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-
-    // Initialize Cloud Firestore and get a reference to the service
-    const db = getFirestore(app);
-
-    // Generate a unique id for the user
-    const userID = uniqid();
-
     // Get the user input for their name
     const userName = document.querySelector("#username").value;
+    if (userName !== null && userName !== "") {
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+        authDomain: "top-where-s-waldo.firebaseapp.com",
+        projectId: "top-where-s-waldo",
+        storageBucket: "top-where-s-waldo.appspot.com",
+        messagingSenderId: "20898117017",
+        appId: "1:20898117017:web:925946e13a2dea6d350f08",
+      };
 
-    // Add a new user doc with user's data
-    await setDoc(doc(db, "users", userID), {
-      name: userName,
-      hours: finalHour,
-      minutes: finalMinute,
-      seconds: finalSecond,
-    });
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
 
-    goToLeaderboard();
+      // Initialize Cloud Firestore and get a reference to the service
+      const db = getFirestore(app);
+
+      // Generate a unique id for the user
+      const userID = uniqid();
+
+      // Add a new user doc with user's data
+      await setDoc(doc(db, "users", userID), {
+        name: userName,
+        hours: finalHour,
+        minutes: finalMinute,
+        seconds: finalSecond,
+      });
+
+      goToLeaderboard();
+    }
   }
 
   return (
