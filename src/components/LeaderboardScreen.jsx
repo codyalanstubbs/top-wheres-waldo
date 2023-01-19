@@ -42,10 +42,8 @@ function Leaderboard({ goToStartScreen }) {
         <thead>
           <tr>
             <th>Rank</th>
-            <th>Username</th>
-            <th>Hours</th>
-            <th>Minutes</th>
-            <th>Seconds</th>
+            <th>Name</th>
+            <th>Time</th>
           </tr>
         </thead>
         <tbody>
@@ -54,9 +52,7 @@ function Leaderboard({ goToStartScreen }) {
               <tr>
                 <td>{row.rank}</td>
                 <td>{row.user.name}</td>
-                <td>{row.user.hours}</td>
-                <td>{row.user.minutes}</td>
-                <td>{row.user.seconds}</td>
+                <td>{`${row.user.hours}:${row.user.minutes}:${row.user.seconds}`}</td>
               </tr>
             );
           })}
