@@ -16,13 +16,13 @@ function GameScreen(props) {
           charactersFound.map((character) => {
             if (character.found) {
               return (
-                <div className="found-character glow">
+                <div className="found-character">
                   <Character name={character.name} img={character.src} />
                 </div>
               );
             }
             return (
-              <div className="find-character glow">
+              <div className="find-character">
                 <Character name={character.name} img={character.src} />
               </div>
             );
