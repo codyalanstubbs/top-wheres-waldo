@@ -27,11 +27,11 @@
 
 @keyframes box-glow {
   from {
-    box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px rgb(247, 177, 3);
   }
 
   to {
-    box-shadow: 0 0 10px goldenrod;
+    box-shadow: 0 0 30px goldenrod;
   }
 }
 
