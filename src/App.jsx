@@ -41,14 +41,14 @@ function App() {
 
       // If there are no more characters to find...
       if (!characterStillNotFound) {
-        // ...stop timer and go to SubmitScoreScreen
+        // ...transition from GameScreen to SubmitScoreScreen
         setGameScreen(false);
         setEndScreen(true);
       }
 
       setCharactersFound(newCharactersFound);
     },
-    [setCharactersFound]
+    [setCharactersFound, charactersFound]
   );
 
   // Calculate and set times - to be used in handleStartClick
@@ -92,6 +92,21 @@ function App() {
     }
   }, [gameScreen]);
 
+  // After transitioning to leaderboard, reset character found properties
+  // and time
+  useEffect(() => {
+    if (leaderboardDisplay) {
+      setCharactersFound([
+        { name: "waldo", found: false, src: Waldo },
+        { name: "wilma", found: false, src: Wilma },
+        { name: "wizard", found: false, src: Wizard },
+      ]);
+      setSeconds("00");
+      setMinutes("00");
+      setHours("00");
+    }
+  }, [leaderboardDisplay]);
+
   function goToGameScreen() {
     // Transition from start screen to game scree
     setStartScreen(false);
@@ -102,16 +117,6 @@ function App() {
     // Transition from submit data screen to leaderboard screen
     setEndScreen(false);
     setLeaderboardDisplay(true);
-
-    // Reset character and time states
-    setCharactersFound([
-      { name: "waldo", found: false, src: Waldo },
-      { name: "wilma", found: false, src: Wilma },
-      { name: "wizard", found: false, src: Wizard },
-    ]);
-    setSeconds("00");
-    setMinutes("00");
-    setHours("00");
   });
 
   const goToStartScreen = useCallback(() => {
