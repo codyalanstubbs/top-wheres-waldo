@@ -10,9 +10,9 @@
 }
 
 .hours, .minutes, .seconds {
-    width: 35px;
+    width: 60px;
 }
 
 .colon {
-    width: 10px;
+    width: 20px;
 }
