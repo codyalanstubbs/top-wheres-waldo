@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef, useEffect } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import SubmitScoreScreen from "./components/SubmitScoreScreen";
 import Leaderboard from "./components/Leaderboard";
@@ -11,6 +11,7 @@ import Wizard from "./assets/images/wizard_400x400.png";
 
 function App() {
   const [startScreen, setStartScreen] = useState(true);
+  const [gameScreen, setGameScreen] = useState(false);
   const [endScreen, setEndScreen] = useState(false);
   const [leaderboardDisplay, setLeaderboardDisplay] = useState(false);
 
@@ -24,10 +25,10 @@ function App() {
   const [seconds, setSeconds] = useState("00");
   const [minutes, setMinutes] = useState("00");
   const [hours, setHours] = useState("00");
-  let interval;
 
   const changeCharacterFound = useCallback(
     (characterName) => {
+      console.log(charactersFound);
       const newCharactersFound = [...charactersFound];
       const character = newCharactersFound.find((char) => {
         return char.name === characterName;
@@ -41,13 +42,13 @@ function App() {
       // If there are no more characters to find...
       if (!characterStillNotFound) {
         // ...stop timer and go to SubmitScoreScreen
-        clearInterval(interval);
+        setGameScreen(false);
         setEndScreen(true);
       }
 
       setCharactersFound(newCharactersFound);
     },
-    [interval, setCharactersFound]
+    [setCharactersFound]
   );
 
   // Calculate and set times - to be used in handleStartClick
@@ -67,15 +68,34 @@ function App() {
     setSeconds(newSeconds);
   }
 
+  // Store a reference to the interval
+  const interval = useRef();
+
+  // Clear time on component dismount
+  useEffect(() => {
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, []);
+
+  // Start and stop interval on gameScreen change
+  useEffect(() => {
+    if (gameScreen) {
+      // Set the startTime for timer
+      const startTime = Date.now();
+
+      // Set interval for incrementing the timer
+      interval.current = setInterval(() => getTime(startTime), 1000);
+    } else {
+      clearInterval(interval.current);
+      interval.current = null;
+    }
+  }, [gameScreen]);
+
   function goToGameScreen() {
     // Transition from start screen to game scree
     setStartScreen(false);
-
-    // Set the startTime for timer
-    const startTime = Date.now();
-
-    // Set interval for incrementing the timer
-    interval = setInterval(() => getTime(startTime), 1000);
+    setGameScreen(true);
   }
 
   const goToLeaderboard = useCallback(() => {
@@ -126,15 +146,17 @@ function App() {
     return <Leaderboard goToStartScreen={goToStartScreen} />;
   }
 
-  return (
-    <GameScreen
-      hours={hours}
-      minutes={minutes}
-      seconds={seconds}
-      charactersFound={charactersFound}
-      changeCharacterFound={changeCharacterFound}
-    />
-  );
+  if (gameScreen) {
+    return (
+      <GameScreen
+        hours={hours}
+        minutes={minutes}
+        seconds={seconds}
+        charactersFound={charactersFound}
+        changeCharacterFound={changeCharacterFound}
+      />
+    );
+  }
 }
 
 export default App;
