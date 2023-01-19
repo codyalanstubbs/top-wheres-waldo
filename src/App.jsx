@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import SubmitScoreScreen from "./components/SubmitScoreScreen";
-import Leaderboard from "./components/Leaderboard";
+import LeaderboardScreen from "./components/LeaderboardScreen";
 import GameScreen from "./components/GameScreen";
 
 import "./App.css";
@@ -12,8 +12,8 @@ import Wizard from "./assets/images/wizard_400x400.png";
 function App() {
   const [startScreen, setStartScreen] = useState(true);
   const [gameScreen, setGameScreen] = useState(false);
-  const [endScreen, setEndScreen] = useState(false);
-  const [leaderboardDisplay, setLeaderboardDisplay] = useState(false);
+  const [submitScoreScreen, setSubmitScoreScreen] = useState(false);
+  const [leaderboardScreen, setLeaderboardScreen] = useState(false);
 
   const [charactersFound, setCharactersFound] = useState([
     { name: "waldo", found: false, src: Waldo },
@@ -46,7 +46,7 @@ function App() {
       if (!characterStillNotFound) {
         // ...transition from GameScreen to SubmitScoreScreen
         setGameScreen(false);
-        setEndScreen(true);
+        setSubmitScoreScreen(true);
       }
 
       setCharactersFound(newCharactersFound);
@@ -98,7 +98,7 @@ function App() {
   // After transitioning to leaderboard, reset character found properties
   // and time
   useEffect(() => {
-    if (leaderboardDisplay) {
+    if (leaderboardScreen) {
       setCharactersFound([
         { name: "waldo", found: false, src: Waldo },
         { name: "wilma", found: false, src: Wilma },
@@ -108,7 +108,7 @@ function App() {
       setMinutes("00");
       setHours("00");
     }
-  }, [leaderboardDisplay]);
+  }, [leaderboardScreen]);
 
   function goToGameScreen() {
     // Transition from start screen to game screen
@@ -118,13 +118,13 @@ function App() {
 
   const goToLeaderboard = useCallback(() => {
     // Transition from submit data screen to leaderboard screen
-    setEndScreen(false);
-    setLeaderboardDisplay(true);
+    setSubmitScoreScreen(false);
+    setLeaderboardScreen(true);
   });
 
   const goToStartScreen = useCallback(() => {
     // Transition from leaderboard screen to start screen
-    setLeaderboardDisplay(false);
+    setLeaderboardScreen(false);
     setStartScreen(true);
   });
 
@@ -139,7 +139,7 @@ function App() {
     );
   }
 
-  if (endScreen) {
+  if (submitScoreScreen) {
     return (
       <SubmitScoreScreen
         finalHour={hours}
@@ -150,8 +150,8 @@ function App() {
     );
   }
 
-  if (leaderboardDisplay) {
-    return <Leaderboard goToStartScreen={goToStartScreen} />;
+  if (leaderboardScreen) {
+    return <LeaderboardScreen goToStartScreen={goToStartScreen} />;
   }
 
   if (gameScreen) {
