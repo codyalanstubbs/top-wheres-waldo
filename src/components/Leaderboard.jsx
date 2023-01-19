@@ -40,7 +40,7 @@ function Leaderboard({ goToStartScreen }) {
       orderBy("seconds"),
       limit(20)
     );
-    console.log("in RetrievdeLeaderboard");
+
     // Build a leaderboard data array for setting to the state
     const boardData = (async () => {
       const querySnapshot = await getDocs(q);
