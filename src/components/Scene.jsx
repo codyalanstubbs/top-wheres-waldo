@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import ConnectToDatabase from "../assets/js/connectToDatabase";
 import Character from "./Character";
 import "../assets/css/Scene.css";
 import SceneImg from "../assets/images/scene-winter.jpeg";
@@ -8,22 +8,11 @@ import Waldo from "../assets/images/waldo_400x400.png";
 import Wilma from "../assets/images/wilma_400x400.png";
 import Wizard from "../assets/images/wizard_400x400.png";
 
+// Connect to database
+const db = ConnectToDatabase();
+
+// Get the coordinate data for a specific character
 function getCharCoordData(characterName) {
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: "top-where-s-waldo.firebaseapp.com",
-    projectId: "top-where-s-waldo",
-    storageBucket: "top-where-s-waldo.appspot.com",
-    messagingSenderId: "20898117017",
-    appId: "1:20898117017:web:925946e13a2dea6d350f08",
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-
-  // Initialize Cloud Firestore and get a reference to the service
-  const db = getFirestore(app);
   const docRef = doc(db, "characters", characterName);
   let docSnap;
   const charCoords = (async () => {

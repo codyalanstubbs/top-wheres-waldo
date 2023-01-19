@@ -1,30 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { initializeApp } from "firebase/app";
-import {
-  query,
-  orderBy,
-  getFirestore,
-  collection,
-  limit,
-  getDocs,
-} from "firebase/firestore";
+import { query, orderBy, collection, limit, getDocs } from "firebase/firestore";
+import ConnectToDatabase from "../assets/js/connectToDatabase";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "top-where-s-waldo.firebaseapp.com",
-  projectId: "top-where-s-waldo",
-  storageBucket: "top-where-s-waldo.appspot.com",
-  messagingSenderId: "20898117017",
-  appId: "1:20898117017:web:925946e13a2dea6d350f08",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
-
+// Connect to dabase and get reference to users
+const db = ConnectToDatabase();
 const usersRef = collection(db, "users");
 
 // eslint-disable-next-line react/prop-types

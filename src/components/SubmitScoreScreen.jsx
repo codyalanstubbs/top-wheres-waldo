@@ -1,7 +1,10 @@
 import React from "react";
 import uniqid from "uniqid";
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import ConnectToDatabase from "../assets/js/connectToDatabase";
+
+// Connect to database
+const db = ConnectToDatabase();
 
 function SubmitScoreSreen(props) {
   // eslint-disable-next-line react/prop-types
@@ -12,22 +15,6 @@ function SubmitScoreSreen(props) {
     const userName = document.querySelector("#username").value;
 
     if (userName !== null && userName !== "" && userName.trim().length) {
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-        authDomain: "top-where-s-waldo.firebaseapp.com",
-        projectId: "top-where-s-waldo",
-        storageBucket: "top-where-s-waldo.appspot.com",
-        messagingSenderId: "20898117017",
-        appId: "1:20898117017:web:925946e13a2dea6d350f08",
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-
-      // Initialize Cloud Firestore and get a reference to the service
-      const db = getFirestore(app);
-
       // Generate a unique id for the user
       const userID = uniqid();
 
