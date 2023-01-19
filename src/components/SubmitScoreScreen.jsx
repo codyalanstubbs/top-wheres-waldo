@@ -10,7 +10,8 @@ function SubmitScoreSreen(props) {
   async function handleSubmitScore() {
     // Get the user input for their name
     const userName = document.querySelector("#username").value;
-    if (userName !== null && userName !== "") {
+
+    if (userName !== null && userName !== "" && userName.trim().length) {
       // Your web app's Firebase configuration
       const firebaseConfig = {
         apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
