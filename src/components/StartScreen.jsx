@@ -7,7 +7,7 @@ function StartScreen({ goToGameScreen }) {
     <div className="App">
       <h1 className="instructions glow">Where&apos;s Waldo?</h1>
       <GlowingWaldo classList="svgGlow" w="200" h="200" />
-      <button type="button" onClick={goToGameScreen}>
+      <button className="arcade-btn" type="button" onClick={goToGameScreen}>
         START
       </button>
     </div>

@@ -1,4 +1,3 @@
-
 body {
   text-align: center;
   background: rgb(31, 31, 31);
@@ -54,21 +53,18 @@ td {
 }
 
 .svgGlow {
-  text-shadow: 0 0 10px rgb(247, 177, 3), 0 0 20px rgb(247, 177, 3),
-    0 0 30px rgb(247, 177, 3), 0 0 40px goldenrod, 0 0 70px goldenrod,
-    0 0 80px goldenrod, 0 0 100px goldenrod, 0 0 150px goldenrod;
   animation: svg-shadow 3s ease-in-out infinite alternate;
 }
 
 @keyframes svg-shadow {
   from {
-    filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px rgb(247, 177, 3))
+    filter: drop-shadow(0 0 20px rgb(247, 177, 3))
       drop-shadow(0 0 30px rgb(247, 177, 3));
   }
 
   to {
-    filter: drop-shadow(0 0 40px #fff) drop-shadow(0 0 70px goldenrod)
-      drop-shadow(0 0 80px goldenrod);
+    filter: drop-shadow(0 0 40px rgb(247, 177, 3))
+      drop-shadow(0 0 70px goldenrod) drop-shadow(0 0 80px goldenrod);
   }
 }
 

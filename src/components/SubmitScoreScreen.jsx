@@ -40,7 +40,7 @@ function SubmitScoreSreen(props) {
       <label htmlFor="username">
         Enter Your Name: <input type="text" name="username" id="username" />
       </label>
-      <button type="button" onClick={handleSubmitScore}>
+      <button className="arcade-btn" type="button" onClick={handleSubmitScore}>
         Submit Score
       </button>
     </div>

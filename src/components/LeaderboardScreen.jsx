@@ -63,7 +63,7 @@ function Leaderboard({ goToStartScreen }) {
           })}
         </tbody>
       </table>
-      <button type="button" className="again" onClick={goToStartScreen}>
+      <button type="button" className="arcade-btn" onClick={goToStartScreen}>
         Play Again?
       </button>
     </div>
