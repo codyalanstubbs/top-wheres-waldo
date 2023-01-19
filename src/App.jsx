@@ -28,13 +28,16 @@ function App() {
 
   const changeCharacterFound = useCallback(
     (characterName) => {
-      console.log(charactersFound);
+      // Create a separate charactersFound array from state
       const newCharactersFound = [...charactersFound];
+
+      // Find the character by name and set found property
       const character = newCharactersFound.find((char) => {
         return char.name === characterName;
       });
       character.found = true;
 
+      // Check if there are still characters that have not been found
       const characterStillNotFound = newCharactersFound.some((char) => {
         return char.found === false;
       });
@@ -108,7 +111,7 @@ function App() {
   }, [leaderboardDisplay]);
 
   function goToGameScreen() {
-    // Transition from start screen to game scree
+    // Transition from start screen to game screen
     setStartScreen(false);
     setGameScreen(true);
   }
