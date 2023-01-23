@@ -66,8 +66,8 @@ This app uses React and Firebase to create a timed <em>Where's Waldo</em> game.
 - [x] Create a SubmitScoreScreen component
 - [x] Create a LeaderboardScreen component
 - [x] Style app with a retro arcade theme
-- [] Make a "select a scene" feature for multiple scenes/levels
-- [] Create your own assets and scenes instead of Where's Waldo imagery
+- [ ] Make a "select a scene" feature for multiple scenes/levels
+- [ ] Create your own assets and scenes instead of Where's Waldo imagery
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
