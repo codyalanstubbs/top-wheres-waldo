@@ -36,7 +36,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://codyalanstubbs.com/the-odin-project/21-shopping-cart/)
+[![Product Name Screen Shot][product-screenshot]](https://codyalanstubbs.com/the-odin-project/22-wheres-waldo/)
 
 This app uses React and Firebase to create a timed <em>Where's Waldo</em> game.
 
@@ -53,14 +53,22 @@ This app uses React and Firebase to create a timed <em>Where's Waldo</em> game.
 
 ## Roadmap
 
-- [] Choose photo(s)
-- [] ID where each person is and save to database
-- [] Add Firebase backend
-- [] Add Homescreen with game instructions
-- [] Add image component to load image on screen
-- [] Add timer component to begin timing on image load
-- [] Add target box component for when user clicks image
-- [] Add user input for high score
+- [x] Choose photo(s)
+- [x] ID where each person is and save to database
+- [x] Add Firebase backend
+- [x] Create a game flow: start -> game -> submit score --> leaderboard --> play again
+- [x] Add image component to load image on screen
+- [x] Add timer component to begin timing on image load
+- [x] Add target box for when user clicks image
+- [x] Add user input for high score
+- [x] Create a StartScreen component
+- [x] Create a GameScreen component
+- [x] Create a SubmitScoreScreen component
+- [x] Create a LeaderboardScreen component
+- [x] Style app with a retro arcade theme
+- [] Make a "select a scene" feature for multiple scenes/levels
+- [] Create your own assets and scenes instead of Where's Waldo imagery
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
