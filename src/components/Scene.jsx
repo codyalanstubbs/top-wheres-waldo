@@ -33,12 +33,15 @@ function Scene(props) {
   const [clicked, setClicked] = useState(false);
   const [clickXPos, setClickXPos] = useState(0);
   const [clickYPos, setClickYPos] = useState(0);
+  const [targetBoxWidth, setTargetBoxWidth] = useState(0);
+  // cons[(targetBoxTop, setTargetBoxTop)] = useState(0);
 
   // Display the targeting box by altering corresponding states
   const handleTargetClick = (e) => {
     setClicked(true);
     setClickXPos(e.pageX);
     setClickYPos(e.pageY);
+    setTargetBoxWidth(0.05 * e.target.clientWidth);
   };
 
   // Function for validating the user's character selection
@@ -46,8 +49,11 @@ function Scene(props) {
   function characterSelected(e) {
     // Find the coordinates of the click position in the scene
     const scene = document.querySelector(".scene");
-    const clickXCoordInScene = clickXPos - scene.offsetLeft;
-    const clickYCoordInScene = clickYPos - scene.offsetTop;
+
+    const clickXCoordInScene =
+      (clickXPos - scene.offsetLeft) / scene.clientWidth;
+    const clickYCoordInScene =
+      (clickYPos - scene.offsetTop) / scene.clientHeight;
 
     // Get the selected character's coordindate data from DB
     const characterName = e.target.id;
@@ -79,15 +85,13 @@ function Scene(props) {
     return (
       <div>
         <button className="scene-btn" type="button" onClick={handleTargetClick}>
-          <img
-            width="600px"
-            src={SceneImg}
-            alt="A Where's Waldo scene."
-            className="scene"
-          />
+          <img src={SceneImg} alt="A Where's Waldo scene." className="scene" />
         </button>
         <div
-          style={{ left: clickXPos - 25, top: clickYPos - 25 }}
+          style={{
+            left: clickXPos - targetBoxWidth / 2,
+            top: clickYPos - targetBoxWidth / 2,
+          }}
           className="target-container"
         >
           <div className="targeting-box" />

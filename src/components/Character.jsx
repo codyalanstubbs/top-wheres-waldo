@@ -10,7 +10,7 @@ function Character(props) {
     <img
       id={lowerCaseName}
       className={classList}
-      width="40px"
+      width="91px"
       src={img}
       alt={alt}
     />

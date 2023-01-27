@@ -15,13 +15,15 @@
 .target-container {
   position: absolute;
   display: block;
+  width: 5%;
 }
 
 .targeting-box {
   box-sizing: border-box;
-  border: 5px solid rgb(66, 66, 66);
-  width: 50px;
-  height: 50px;
+  border: 0.25rem solid rgb(66, 66, 66);
+  width: 100%;
+  height: 0;
+  padding-bottom: 95%;
 }
 
 .character-targets {
@@ -29,15 +31,16 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  border: 4px solid goldenrod;
+  border: 0.25rem solid goldenrod;
   background-color: rgba(211, 211, 211, 0.75);
 }
 
 .character-targets > button > img {
+  width: 100%;
   border: 1px solid transparent;
 }
 
-.character-targets > button > img:hover {
+.character-targets > button:hover {
   border: 1px solid rgba(211, 211, 211, 0.75);
   background-color: rgb(255, 217, 122);
 }
@@ -47,7 +50,6 @@ button.select-character {
   justify-content: center;
   align-items: center;
   border: 1px solid transparent;
-  padding: 20px;
-  width: 40px;
-  height: 40px;
+  padding: 1%px;
+  width: 100%;
 }
